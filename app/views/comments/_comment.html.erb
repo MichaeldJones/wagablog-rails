@@ -1,0 +1,22 @@
+<div class="flex">
+<p class="pr-2 text-xl">
+  <%= comment.user.username %>
+</p>
+<p class="font-light text-gray-500 text-sm mt-1">
+ <%= comment.updated_at.strftime("%B %d, %Y") %>
+</p>
+
+</div>
+
+
+<p class="ml-1 mr-16 my-2 text-gray-700">
+  <%= comment.comment %>
+</p>
+
+<% if comment.user == current_user || current_user.try(:admin?) %>
+<div class="my-4">
+  <%= link_to "編集", edit_post_comment_path(comment.post, comment), class: "bg-white mt-20 ml-2 text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100" %>
+  <%= link_to "削除", [comment.post, comment], method: :delete, data: { confirm: "Are you sure?" }, class: "bg-white mt-20 ml-2 text-red-800 font-medium py-1 px-4 border border-red-800 rounded-lg tracking-wide hover:bg-red-100" %>
+</div>
+  
+<% end %>

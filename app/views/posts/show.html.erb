@@ -1,0 +1,41 @@
+
+
+<div class="bg-dark-pastel h-full py-8">
+
+
+  <div class="bg-paper-brown rounded-sm md:w-2/3 m-auto min-h-screen mb-20">
+    
+    <h2 class="text-4xl pt-10 pl-10">
+      <%= @post.title %>
+    </h2>
+
+    <p class="text-xl px-10 leading-10 my-6 pt-6 border-t-2 border-yellow-800">
+      <%= @post.content %>
+    </p>
+    <% if current_user.try(:admin?) %>
+      <%= link_to "編集", edit_post_path(@post), class: "bg-white mt-20 ml-2 text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100" %>
+      <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-white mt-20 ml-2 text-red-800 font-medium py-1 px-4 border border-red-800 rounded-lg tracking-wide hover:bg-red-100" %>
+    <% end %>
+  </div>
+
+  
+  <div class="bg-paper-brown m-auto w-full lg:w-11/12 rounded-sm pb-4">
+    <p class="font-bold m-4 pt-4"><%= @post.comments.count %> • コメント</p>
+
+    <div class="mt-4 ml-4">
+      <%= render @post.comments %>
+    </div>
+      
+      <% if user_signed_in? %>
+        <%= render 'comments/form' %>
+      <% end %>
+
+  </div>
+
+
+
+    
+</div>
+
+
+

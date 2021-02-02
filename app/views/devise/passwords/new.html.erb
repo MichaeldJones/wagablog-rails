@@ -1,0 +1,27 @@
+<div class="m-auto h-screen mt-4 pt-16 mb-16 pb-16 bg-dark-pastel lg:w-1/2 w-full">
+
+  <div class="lg:w-2/3 w-full px-10 py-6 lg:m-auto bg-paper-brown rounded-lg shadow-md">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow w-full p-2 border rounded", placeholder: "Account's Email" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Send Recovery email", class: "bg-blue-500 hover:bg-blue-900 text-white font-bold mt-4 mb-6 py-2 pl-4 pr-3 rounded" %>
+      </div>
+    <% end %>
+
+    <div class="flex">
+      <%= render "devise/shared/links" %>
+    </div>
+    
+  
+  </div>
+
+  
+</div>
+
+
+

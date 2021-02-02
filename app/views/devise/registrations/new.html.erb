@@ -1,0 +1,36 @@
+<div class="m-auto h-screen mt-4 pt-16 mb-16 pb-16 bg-dark-pastel lg:w-1/2 w-full">
+
+  <div class="lg:w-2/3 w-full px-10 py-6 lg:m-auto bg-paper-brown rounded-lg shadow-md"> 
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "shadow w-full p-2 border rounded", placeholder: "ウーザー" %>
+      </div>
+
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow w-full p-2 mt-6 border rounded", placeholder: "Eメールアドレス" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password", class: "shadow w-full p-2 mt-6 border rounded", placeholder: "新しいパスワード" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "shadow w-full p-2 mt-6 mb-2 border rounded", placeholder: "パスワードを確認" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "登録", class: "bg-blue-500 hover:bg-blue-900 text-white font-bold mt-4 mb-6 py-2 px-8 rounded" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+
+  
+
+</div>
+
+
+

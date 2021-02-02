@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <style>
+    #menu-toggle:checked + #menu {
+      display: block;
+    }    
+    .bg-blue-pastel {
+      --tw-bg-opacity: 1;
+      background-color: rgba(175, 199, 208, var(--tw-bg-opacity));
+    }
+    .bg-paper-brown {
+      --tw-bg-opacity: 1;
+      background-color: rgba(255,248,220, var(--tw-bg-opacity));
+    }
+    .bg-dark-pastel {
+      --tw-bg-opacity: 1;
+      background-color: rgba(149, 180, 204, var(--tw-bg-opacity));
+    }
+  </style>
+
+  <body class="antialiased bg-paper-brown overflow-x-hidden">
+
+    <header class="lg:px-16 px-6 border-b-2 border-gray-400 shadow bg-blue-pastel flex flex-wrap items-center py-2">
+
+      <div class="flex-1 flex justify-between items-center">
+        <p class="text-gray-800 text-xl font-bold md:text-2xl"><%= link_to "我がブログ", root_path %></p>
+      </div>
+      
+      <label for="menu-toggle" class="cursor-pointer lg:hidden block">
+        <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current text-gray-900">
+          <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+        </svg>
+      </label>
+      <input type="checkbox" class="hidden" id="menu-toggle" />
+
+      <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+        <nav>
+          <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
+            <li>
+              <%= form_tag posts_path, :method => "get" do %>
+                  <%= text_field_tag :search, params[:search], class: "border-2 border-gray-300 bg-paper-brown h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none", placeholder: "検索"%>
+                  <%= submit_tag("",:title => nil) %>    
+              <% end %>
+            </li>
+
+            <% if user_signed_in? %>
+              <li>
+                <p class="lg:p-4 px-0 block border-b-2 border-transparent">
+                  <%= current_user.username %>
+                </p>
+              </li>
+
+              <% if current_user.admin? %>
+                <li>
+                  <p class="lg:p-4 px-0 block border-b-2 border-transparent hover:border-indigo-400">
+                    <%= link_to "Create unt epic Post", new_post_path %>
+                  </p>
+                </li>
+              <% end %>
+
+              <li>
+                <p class="lg:p-4 px-0 block border-b-2 border-transparent hover:border-indigo-400">
+                  <%= link_to "ログアウト", destroy_user_session_path, :method=>'delete'%>
+                </p>
+              </li>
+            <% else %>
+              <li>
+                <p class="lg:p-4 px-0 block border-b-2 border-transparent hover:border-indigo-400">
+                  <%= link_to "ログイン", new_user_session_path %>
+                </p>
+              </li>
+              <li>
+                <p class="lg:p-4 px-0 block border-b-2 border-transparent hover:border-indigo-400">
+                  <%= link_to "登録", new_user_registration_path %>
+                </p>
+              </li>
+            <% end %>
+            <%# <li>
+              <%# <p class="lg:p-4 px-0 block border-b-2 border-transparent hover:border-indigo-400"><%= link_to "about", '/pages/about'%>
+            <%# </li> %>
+          </ul>
+        </nav>
+      </div>     
+    </header>
+    <%= yield %>
+  </body>
+</html>

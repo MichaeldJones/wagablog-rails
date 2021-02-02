@@ -1,0 +1,16 @@
+<%= form_for @post do |form| %>
+
+<div>
+  <div>
+    <%= form.text_area :title, class: "bg-gray-100 ml-6 my-4 rounded border border-gray-400 leading-normal resize-none w-1/2 h-12 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white", placeholder: "タイトル" %>
+  </div>
+  <div class="m-auto">
+    <%= form.text_area :content, class: "bg-gray-100 ml-6 rounded border border-gray-400 leading-normal resize-none w-5/6 h-96 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white", placeholder: "ブログ" %>
+  </div>
+  <div>
+    <%= form.submit "作るぜ", class: "bg-white mt-20 ml-2 text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100" %>
+  </div>
+</div>
+  
+  
+<% end %>
