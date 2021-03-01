@@ -1,24 +1,3 @@
-# README
+# wagablog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is my personal blog that I write posts in Japanese. This is the version that I created using Ruby on Rails. I no longer am using this version of the site, as I rewrote it with React.js.
